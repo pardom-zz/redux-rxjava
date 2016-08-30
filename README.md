@@ -15,5 +15,5 @@ repositories {
 ```
 
 ```groovy
-compile 'com.github.pardom:redux-rxjava-kotlin:-SNAPSHOT'
+compile 'com.github.pardom:redux-rxjava-kotlin:1.0.0'
 ```
