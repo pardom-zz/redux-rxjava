@@ -20,16 +20,16 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class StoreChangeSubscription : rx.Subscription {
 
-	private val unsubscribed = AtomicBoolean()
+    private val unsubscribed = AtomicBoolean()
 
-	protected abstract fun onUnsubscribe()
+    protected abstract fun onUnsubscribe()
 
-	override fun isUnsubscribed() = unsubscribed.get()
+    override fun isUnsubscribed() = unsubscribed.get()
 
-	override fun unsubscribe() {
-		if (unsubscribed.compareAndSet(false, true)) {
-			onUnsubscribe()
-		}
-	}
+    override fun unsubscribe() {
+        if (unsubscribed.compareAndSet(false, true)) {
+            onUnsubscribe()
+        }
+    }
 
 }
