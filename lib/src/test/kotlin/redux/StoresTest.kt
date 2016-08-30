@@ -28,55 +28,55 @@ import rx.functions.Action1
 
 class StoresTest : Spek({
 
-	describe("Store") {
+    describe("Store") {
 
-		describe("asObservable") {
+        describe("asObservable") {
 
-			it("creates a state change observable") {
-				val store = Store.create(Reducers.TODOS, State())
-				val onNext = mock(Action1::class.java) as Action1<State>
+            it("creates a state change observable") {
+                val store = Store.create(Reducers.TODOS, State())
+                val onNext = mock(Action1::class.java) as Action1<State>
 
-				store.asObservable().subscribe(onNext)
-				store.dispatch(unknownAction())
-				verify(onNext, times(1)).call(any())
-			}
+                store.asObservable().subscribe(onNext)
+                store.dispatch(unknownAction())
+                verify(onNext, times(1)).call(any())
+            }
 
-			it("creates a cold observable") {
-				val store = Store.create(Reducers.TODOS, State())
-				val onNextA = mock(Action1::class.java) as Action1<State>
-				val onNextB = mock(Action1::class.java) as Action1<State>
-				val storeChangeStream = store.asObservable().share()
+            it("creates a cold observable") {
+                val store = Store.create(Reducers.TODOS, State())
+                val onNextA = mock(Action1::class.java) as Action1<State>
+                val onNextB = mock(Action1::class.java) as Action1<State>
+                val storeChangeStream = store.asObservable().share()
 
-				verify(onNextA, times(0)).call(any())
-				verify(onNextB, times(0)).call(any())
+                verify(onNextA, times(0)).call(any())
+                verify(onNextB, times(0)).call(any())
 
-				storeChangeStream.subscribe(onNextA)
-				store.dispatch(unknownAction())
-				verify(onNextA, times(1)).call(any())
-				verify(onNextB, times(0)).call(any())
+                storeChangeStream.subscribe(onNextA)
+                store.dispatch(unknownAction())
+                verify(onNextA, times(1)).call(any())
+                verify(onNextB, times(0)).call(any())
 
-				storeChangeStream.subscribe(onNextB)
-				store.dispatch(unknownAction())
-				verify(onNextA, times(2)).call(any())
-				verify(onNextB, times(1)).call(any())
-			}
+                storeChangeStream.subscribe(onNextB)
+                store.dispatch(unknownAction())
+                verify(onNextA, times(2)).call(any())
+                verify(onNextB, times(1)).call(any())
+            }
 
-			it("skips unsubscribed subscriptions") {
-				val store = Store.create(Reducers.TODOS, State())
-				val onNext = mock(Action1::class.java) as Action1<State>
-				val subscription = store.asObservable().subscribe(onNext)
+            it("skips unsubscribed subscriptions") {
+                val store = Store.create(Reducers.TODOS, State())
+                val onNext = mock(Action1::class.java) as Action1<State>
+                val subscription = store.asObservable().subscribe(onNext)
 
-				store.dispatch(unknownAction())
-				verify(onNext, times(1)).call(any())
+                store.dispatch(unknownAction())
+                verify(onNext, times(1)).call(any())
 
-				subscription.unsubscribe()
+                subscription.unsubscribe()
 
-				store.dispatch(unknownAction())
-				verify(onNext, times(1)).call(any())
-			}
+                store.dispatch(unknownAction())
+                verify(onNext, times(1)).call(any())
+            }
 
-		}
+        }
 
-	}
+    }
 
 })

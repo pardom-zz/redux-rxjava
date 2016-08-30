@@ -21,20 +21,20 @@ import rx.Observable
 
 class StoreChangeOnSubscribe<S : Any>(private val store: Store<S>) : Observable.OnSubscribe<S> {
 
-	override fun call(subscriber: rx.Subscriber<in S>) {
-		val subscription = store.subscribe(object : Subscriber {
-			override fun onStateChanged() {
-				if (!subscriber.isUnsubscribed) {
-					subscriber.onNext(store.getState())
-				}
-			}
-		})
+    override fun call(subscriber: rx.Subscriber<in S>) {
+        val subscription = store.subscribe(object : Subscriber {
+            override fun onStateChanged() {
+                if (!subscriber.isUnsubscribed) {
+                    subscriber.onNext(store.getState())
+                }
+            }
+        })
 
-		subscriber.add(object : StoreChangeSubscription() {
-			override fun onUnsubscribe() {
-				subscription.unsubscribe()
-			}
-		})
-	}
+        subscriber.add(object : StoreChangeSubscription() {
+            override fun onUnsubscribe() {
+                subscription.unsubscribe()
+            }
+        })
+    }
 
 }

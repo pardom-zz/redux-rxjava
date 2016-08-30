@@ -19,6 +19,5 @@ import rx.Observable
  */
 
 fun <S : Any> Store<S>.asObservable(): Observable<S> {
-	return Observable.create(StoreChangeOnSubscribe(this))
+    return Observable.create(StoreChangeOnSubscribe(this))
 }
-
