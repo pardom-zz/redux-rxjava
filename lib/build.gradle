@@ -13,7 +13,7 @@ configurations {
 }
 
 dependencies {
-	compile 'com.github.pardom.redux-kotlin:lib:1.0.1'
+	compile 'com.github.pardom.redux-kotlin:lib:1.0.2'
 	compile 'io.reactivex:rxjava:1.1.8'
 
 	testCompile 'junit:junit:4.12'
@@ -21,7 +21,7 @@ dependencies {
 	testCompile 'org.jetbrains.spek:spek:1.0.9'
 	testCompile 'org.mockito:mockito-core:2.0.86-beta'
 
-    ktlint 'com.github.shyiko:ktlint:0.1.2'
+  ktlint 'com.github.shyiko:ktlint:0.1.2'
 }
 
 task ktlint(type: JavaExec) {
