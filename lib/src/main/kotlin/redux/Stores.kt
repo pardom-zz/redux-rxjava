@@ -1,5 +1,6 @@
 package redux
 
+import redux.api.Store
 import rx.Observable
 
 /*

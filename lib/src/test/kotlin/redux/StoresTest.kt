@@ -33,7 +33,7 @@ class StoresTest : Spek({
         describe("asObservable") {
 
             it("creates a state change observable") {
-                val store = Store.create(Reducers.TODOS, State())
+                val store = createStore(Reducers.TODOS, State())
                 val onNext = mock(Action1::class.java) as Action1<State>
 
                 store.asObservable().subscribe(onNext)
@@ -42,7 +42,7 @@ class StoresTest : Spek({
             }
 
             it("creates a cold observable") {
-                val store = Store.create(Reducers.TODOS, State())
+                val store = createStore(Reducers.TODOS, State())
                 val onNextA = mock(Action1::class.java) as Action1<State>
                 val onNextB = mock(Action1::class.java) as Action1<State>
                 val storeChangeStream = store.asObservable().share()
@@ -62,7 +62,7 @@ class StoresTest : Spek({
             }
 
             it("skips unsubscribed subscriptions") {
-                val store = Store.create(Reducers.TODOS, State())
+                val store = createStore(Reducers.TODOS, State())
                 val onNext = mock(Action1::class.java) as Action1<State>
                 val subscription = store.asObservable().subscribe(onNext)
 

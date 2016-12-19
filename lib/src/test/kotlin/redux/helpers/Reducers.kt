@@ -1,6 +1,6 @@
 package redux.helpers
 
-import redux.Reducer
+import redux.api.Reducer
 import redux.helpers.Todos.Action
 import redux.helpers.Todos.State
 import redux.helpers.Todos.Todo
@@ -29,26 +29,18 @@ object Reducers {
         } + 1
     }
 
-    object TODOS : Reducer<State> {
-
-        override fun reduce(state: State, action: Any): State {
-            return when (action) {
-                is Action.AddTodo -> state.copy(todos = state.todos + Todo(id(state), action.todo))
-                else -> state
-            }
+    val TODOS = Reducer<State> { state, action ->
+        when (action) {
+            is Action.AddTodo -> state.copy(todos = state.todos + Todo(id(state), action.todo))
+            else -> state
         }
-
     }
 
-    object TODOS_REVERSE : Reducer<State> {
-
-        override fun reduce(state: State, action: Any): State {
-            return when (action) {
-                is Action.AddTodo -> state.copy(todos = listOf(Todo(id(state), action.todo)) + state.todos)
-                else -> state
-            }
+    val TODOS_REVERSE = Reducer<State> { state, action ->
+        when (action) {
+            is Action.AddTodo -> state.copy(todos = listOf(Todo(id(state), action.todo)) + state.todos)
+            else -> state
         }
-
     }
 
 }

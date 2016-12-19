@@ -1,7 +1,7 @@
 package redux
 
-import redux.Store.Subscriber
-import rx.Observable
+import redux.api.Store
+import rx.Observable.OnSubscribe
 
 /*
  * Copyright (C) 2016 Michael Pardo
@@ -19,16 +19,14 @@ import rx.Observable
  * limitations under the License.
  */
 
-class StoreChangeOnSubscribe<S : Any>(private val store: Store<S>) : Observable.OnSubscribe<S> {
+class StoreChangeOnSubscribe<S : Any>(private val store: Store<S>) : OnSubscribe<S> {
 
     override fun call(subscriber: rx.Subscriber<in S>) {
-        val subscription = store.subscribe(object : Subscriber {
-            override fun onStateChanged() {
-                if (!subscriber.isUnsubscribed) {
-                    subscriber.onNext(store.getState())
-                }
+        val subscription = store.subscribe {
+            if (!subscriber.isUnsubscribed) {
+                subscriber.onNext(store.getState())
             }
-        })
+        }
 
         subscriber.add(object : StoreChangeSubscription() {
             override fun onUnsubscribe() {
