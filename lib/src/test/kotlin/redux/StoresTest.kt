@@ -4,6 +4,10 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import org.jetbrains.spek.api.Spek
+import org.jetbrains.spek.api.dsl.describe
+import org.jetbrains.spek.api.dsl.it
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import redux.helpers.ActionCreators.unknownAction
 import redux.helpers.Reducers
@@ -26,6 +30,8 @@ import rx.functions.Action1
  * limitations under the License.
  */
 
+
+@RunWith(JUnitPlatform::class)
 class StoresTest : Spek({
 
     describe("Store") {
