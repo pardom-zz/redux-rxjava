@@ -30,7 +30,6 @@ import rx.functions.Action1
  * limitations under the License.
  */
 
-
 @RunWith(JUnitPlatform::class)
 class StoresTest : Spek({
 
