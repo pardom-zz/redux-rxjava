@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/pardom/redux-rxjava-kotlin.svg?branch=master)](https://travis-ci.org/pardom/redux-rxjava-kotlin)
-[![](https://jitpack.io/v/pardom/redux-rxjava-kotlin.svg)](https://jitpack.io/#pardom/redux-rxjava-kotlin)
+[![Build Status](https://travis-ci.org/pardom/redux-rxjava.svg?branch=master)](https://travis-ci.org/pardom/redux-rxjava)
+[![](https://jitpack.io/v/pardom/redux-rxjava.svg)](https://jitpack.io/#pardom/redux-rxjava)
 
 # Redux RxJava
 RxJava extentions for Redux for Kotlin
