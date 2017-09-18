@@ -1,3 +1,3 @@
-include ':rxjava'
-include ':rxjava2'
+include ':redux-rxjava'
+include ':redux-rxjava2'
 
